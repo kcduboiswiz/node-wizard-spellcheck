@@ -44,4 +44,3 @@ This project intentionally includes older versions of packages to demonstrate SC
 - **`lodash@4.17.15`**: Prototype Pollution (CVE-2019-10744 / CVE-2020-8203)
 - **`minimist@1.2.5`**: Prototype Pollution (CVE-2021-44906)
 - **`marked@0.3.5`**: Regular Expression Denial of Service (ReDoS) (CVE-2017-1000277)
-# node-wizard-spellcheck
