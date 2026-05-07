@@ -1,0 +1,24 @@
+{
+  "name": "spellbook-analyzer",
+  "version": "1.0.0",
+  "description": "An ancient library for analyzing magical spellbooks, scrolls, and incantations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node cli.js --spell=\"fireball\""
+  },
+  "keywords": [
+    "spellbook",
+    "magic",
+    "wizard",
+    "analyzer",
+    "scrolls"
+  ],
+  "author": "Grand Magus",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "4.17.15",
+    "marked": "0.3.5",
+    "minimist": "1.2.5",
+    "winston": "^3.19.0"
+  }
+}
