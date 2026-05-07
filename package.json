@@ -4,7 +4,7 @@
   "description": "An ancient library for analyzing magical spellbooks, scrolls, and incantations.",
   "main": "index.js",
   "scripts": {
-    "test": "node cli.js --spell=\"fireball\""
+    "test": "node --test tests/*.test.js"
   },
   "keywords": [
     "spellbook",

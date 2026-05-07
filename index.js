@@ -63,7 +63,21 @@ ${notes || ''}
   };
 }
 
+/**
+ * Enchants a markdown document by prefixing its title and converting to HTML
+ * @param {string} md_doc The markdown document to enchant
+ * @returns {string} The enchanted HTML
+ */
+function enchant_document(md_doc) {
+  // Prefix the first # header with "Enchanted: "
+  const enchantedMd = md_doc.replace(/^(#\s*)(.*)$/m, '$1Enchanted: $2');
+  
+  // Parse markdown to HTML without sanitization
+  return marked(enchantedMd, { sanitize: false });
+}
+
 module.exports = {
   analyzeSpellbook,
+  enchant_document,
   logger
 };
