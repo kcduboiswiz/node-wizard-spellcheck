@@ -76,8 +76,38 @@ function enchant_document(md_doc) {
   return marked(enchantedMd, { sanitize: false });
 }
 
+/**
+ * Calls a remote spell from a given URL, demonstrating SSRF vulnerability due to improper input sanitization.
+ * @param {string} url The full URL of the remote spellbook/resource.
+ * @returns {Promise<string>} The content fetched from the URL.
+ */
+async function call_remote_spell(url) {
+    const logger = require('winston').createLogger({
+        level: 'warn', // Using warn level for this sensitive operation
+        format: winston.format.simple(),
+        transports: [new (require('winston')).transports.Console()]
+    });
+
+    logger.warn(`[!] Attempting to fetch remote resource from potentially unsafe URL: ${url}`);
+
+    // ⚠️ VULNERABLE: No input validation or allow-listing implemented for the URL.
+    // This function directly uses the provided URL in a network request, allowing SSRF if 'url' points to internal services (e.g., localhost:80).
+    try {
+        // NOTE: In a real Node environment, we should use 'node-fetch' or similar polyfill for global 'fetch'.
+        const response = await fetch(url); 
+        if (!response.ok) {
+            throw new Error(`Failed to fetch remote resource: ${response.statusText}`);
+        }
+        return await response.text();
+    } catch (error) {
+        logger.error("Remote spellcasting failed:", error.message);
+        throw new Error(`Could not cast remote spell: ${error.message}`);
+    }
+}
+
 module.exports = {
   analyzeSpellbook,
   enchant_document,
+  call_remote_spell, // Added the vulnerable function
   logger
 };
